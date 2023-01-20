@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:whats_weather/errors/network_error.dart';
 import 'package:whats_weather/services/network/dto/weather_response.dart';
 
 class WeatherService {
@@ -39,6 +40,13 @@ class WeatherService {
       Uri.parse(url),
       headers: <String, String>{"authorization": basicAuth},
     );
+
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      throw NetworkError(
+        response.statusCode,
+        response.reasonPhrase,
+      );
+    }
 
     final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
 

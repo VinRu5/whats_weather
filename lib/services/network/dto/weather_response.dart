@@ -1,13 +1,14 @@
+import 'package:equatable/equatable.dart';
 import 'package:whats_weather/models/Weather_data_model.dart';
 
-class WeatherResponse {
+class WeatherResponse extends Equatable {
   final List<WeatherDataModel> temperatures;
   final List<WeatherDataModel> temperaturesMin;
   final List<WeatherDataModel> temperaturesMax;
   final List<WeatherDataModel> weatherStates;
   final List<WeatherDataModel> precipitations;
 
-  WeatherResponse({
+  const WeatherResponse({
     required this.temperatures,
     required this.temperaturesMin,
     required this.temperaturesMax,
@@ -39,4 +40,13 @@ class WeatherResponse {
     }
     return list;
   }
+
+  @override
+  List<Object?> get props => [
+        temperatures,
+        temperaturesMin,
+        temperaturesMax,
+        weatherStates,
+        precipitations,
+      ];
 }

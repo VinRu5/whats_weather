@@ -96,3 +96,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: fonts/lato/lato_regular.ttf
+        - asset: fonts/lato/lato_light.ttf
+          weight: 300
+        - asset: fonts/lato/lato_bold.ttf
+          weight: 600
