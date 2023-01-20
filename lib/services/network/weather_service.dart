@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:whats_weather/services/network/dto/weather_response.dart';
 
 class WeatherService {
   static const String username = "me_russo";
@@ -15,10 +16,10 @@ class WeatherService {
   //final String coordinates = "52.520551,13.461804";
   final String typeFile = "json";
 
-  final String urlLong =
-      "http://api.meteomatics.com/2023-01-17T00:00:00Z--2023-01-18T00:00:00Z:PT1H/t_2m:C/52.520551,13.461804/json";
+  // final String urlLong =
+  //     "http://api.meteomatics.com/2023-01-17T00:00:00Z--2023-01-18T00:00:00Z:PT1H/t_2m:C/52.520551,13.461804/json";
 
-  Future<void> getWeather(
+  Future<WeatherResponse> getWeather(
     DateTime initialDate,
     DateTime endDate,
     double latitude,
@@ -40,6 +41,7 @@ class WeatherService {
     );
 
     final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-    print(response);
+
+    return WeatherResponse.fromJson(jsonResponse);
   }
 }
