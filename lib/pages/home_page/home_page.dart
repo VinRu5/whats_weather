@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whats_weather/services/geo_services.dart';
 import 'package:whats_weather/services/network/weather_service.dart';
+import 'package:whats_weather/theme/weather_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -33,7 +35,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("HOME"),
+        child: Row(
+          children: [
+            Text("HOME"),
+            Icon(
+              FontAwesomeIcons.cloud,
+              color: WeatherTheme.cyan,
+            ),
+          ],
+        ),
       ),
     );
   }
