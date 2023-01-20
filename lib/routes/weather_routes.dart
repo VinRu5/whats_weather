@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whats_weather/pages/home_page/home_pgae.dart';
+import 'package:whats_weather/pages/home_page/home_page.dart';
 
 class WeatherRoutes {
   /// Nomi delle rotte dell'app
