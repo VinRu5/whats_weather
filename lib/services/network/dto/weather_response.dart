@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:whats_weather/models/Weather_data_model.dart';
+import 'package:whats_weather/models/weather_data_model.dart';
 
 class WeatherResponse extends Equatable {
   final List<WeatherDataModel> temperatures;
@@ -7,6 +7,7 @@ class WeatherResponse extends Equatable {
   final List<WeatherDataModel> temperaturesMax;
   final List<WeatherDataModel> weatherStates;
   final List<WeatherDataModel> precipitations;
+  final List<WeatherDataModel> windSpeed;
 
   const WeatherResponse({
     required this.temperatures,
@@ -14,15 +15,17 @@ class WeatherResponse extends Equatable {
     required this.temperaturesMax,
     required this.weatherStates,
     required this.precipitations,
+    required this.windSpeed,
   });
 
   factory WeatherResponse.fromJson(Map<String, dynamic> map) {
     return WeatherResponse(
-      temperatures: _getData(map["data"][0]), //temperatures,
-      temperaturesMin: _getData(map["data"][1]), //temperaturesMin,
-      temperaturesMax: _getData(map["data"][2]), //temperaturesMax,
-      weatherStates: _getData(map["data"][3]), //weatherStates,
-      precipitations: _getData(map["data"][4]), //precipitations,
+      temperatures: _getData(map["data"][0]),
+      temperaturesMin: _getData(map["data"][1]),
+      temperaturesMax: _getData(map["data"][2]),
+      weatherStates: _getData(map["data"][3]),
+      precipitations: _getData(map["data"][4]),
+      windSpeed: _getData(map["data"][5]),
     );
   }
 
@@ -48,5 +51,6 @@ class WeatherResponse extends Equatable {
         temperaturesMax,
         weatherStates,
         precipitations,
+        windSpeed,
       ];
 }

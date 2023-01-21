@@ -13,7 +13,7 @@ class WeatherService {
 
   final String host = "http://api.meteomatics.com";
   final String parameters =
-      "t_2m:C,t_min_2m_24h:C,t_max_2m_24h:C,weather_symbol_24h:idx,precip_24h:mm";
+      "t_2m:C,t_min_2m_24h:C,t_max_2m_24h:C,weather_symbol_24h:idx,precip_24h:mm,wind_speed_10m:ms";
   //final String coordinates = "52.520551,13.461804";
   final String typeFile = "json";
 

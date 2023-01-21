@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whats_weather/routes/weather_routes.dart';
 import 'package:whats_weather/services/network/weather_service.dart';
+import 'package:whats_weather/theme/weather_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -19,7 +20,10 @@ class App extends StatelessWidget {
         title: "WhatsWeather",
         initialRoute: WeatherRoutes.home,
         onGenerateRoute: (settings) => WeatherRoutes.getRoutes(settings),
-        theme: ThemeData(fontFamily: "Lato"),
+        theme: ThemeData(
+          fontFamily: "Lato",
+        ),
+        themeMode: ThemeMode.light,
       ),
     );
   }
