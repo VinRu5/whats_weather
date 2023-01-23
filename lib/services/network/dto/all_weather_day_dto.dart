@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:whats_weather/models/weather_data_model.dart';
+import 'package:whats_weather/services/network/dto/weather_data_model.dart';
 
-class WeatherResponse extends Equatable {
+class AllWeatherDayDTO extends Equatable {
   final List<WeatherDataModel> temperatures;
   final List<WeatherDataModel> temperaturesMin;
   final List<WeatherDataModel> temperaturesMax;
@@ -9,7 +9,7 @@ class WeatherResponse extends Equatable {
   final List<WeatherDataModel> precipitations;
   final List<WeatherDataModel> windSpeed;
 
-  const WeatherResponse({
+  const AllWeatherDayDTO({
     required this.temperatures,
     required this.temperaturesMin,
     required this.temperaturesMax,
@@ -18,18 +18,18 @@ class WeatherResponse extends Equatable {
     required this.windSpeed,
   });
 
-  factory WeatherResponse.fromJson(Map<String, dynamic> map) {
-    return WeatherResponse(
-      temperatures: _getData(map["data"][0]),
-      temperaturesMin: _getData(map["data"][1]),
-      temperaturesMax: _getData(map["data"][2]),
-      weatherStates: _getData(map["data"][3]),
-      precipitations: _getData(map["data"][4]),
-      windSpeed: _getData(map["data"][5]),
+  factory AllWeatherDayDTO.fromJson(Map<String, dynamic> map) {
+    return AllWeatherDayDTO(
+      temperatures: _getData<double>(map["data"][0]),
+      temperaturesMin: _getData<double>(map["data"][1]),
+      temperaturesMax: _getData<double>(map["data"][2]),
+      weatherStates: _getData<int>(map["data"][3]),
+      precipitations: _getData<double>(map["data"][4]),
+      windSpeed: _getData<double>(map["data"][5]),
     );
   }
 
-  static List<WeatherDataModel> _getData(Map<String, dynamic> map) {
+  static List<WeatherDataModel> _getData<T>(Map<String, dynamic> map) {
     List<WeatherDataModel> list = [];
     final List<dynamic> listMap = map["coordinates"][0]["dates"];
     for (var data in listMap) {
@@ -37,7 +37,7 @@ class WeatherResponse extends Equatable {
         WeatherDataModel(
           date: DateTime.tryParse(data["date"]) ??
               DateTime.fromMillisecondsSinceEpoch(0),
-          value: data["value"],
+          value: data["value"] as T,
         ),
       );
     }

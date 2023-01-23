@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-class WeatherDataModel extends Equatable {
+class WeatherDataModel<T> extends Equatable {
   final DateTime date;
-  final num value;
+  final T value;
 
   const WeatherDataModel({
     required this.date,
