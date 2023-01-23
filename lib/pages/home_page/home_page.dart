@@ -94,6 +94,9 @@ class _HomePageState extends State<HomePage> {
         height: 100,
         child: CustomPaint(
           painter: WeatherArc(),
+          child: Center(
+            child: Text("24 Marzo".toUpperCase()),
+          ),
         ),
       );
 }
