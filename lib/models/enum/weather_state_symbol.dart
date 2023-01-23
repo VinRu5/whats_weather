@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-enum WeatherState {
+enum WeatherStateSymbol {
   notDeterminate,
   clearSky,
   lightClouds,
@@ -21,42 +21,42 @@ enum WeatherState {
   sandstorm,
 }
 
-extension WeatherStateExtension on WeatherState {
+extension WeatherStateExtension on WeatherStateSymbol {
   String get stateText {
     switch (this) {
-      case WeatherState.notDeterminate:
+      case WeatherStateSymbol.notDeterminate:
         return "Non disponibile";
-      case WeatherState.clearSky:
+      case WeatherStateSymbol.clearSky:
         return "Cielo limpido";
-      case WeatherState.lightClouds:
+      case WeatherStateSymbol.lightClouds:
         return "Leggermente nuvoloso";
-      case WeatherState.partlyCloudy:
+      case WeatherStateSymbol.partlyCloudy:
         return "Parzialmente nuvoloso";
-      case WeatherState.cloudy:
+      case WeatherStateSymbol.cloudy:
         return "Nuvoloso";
-      case WeatherState.rain:
+      case WeatherStateSymbol.rain:
         return "Pioggia";
-      case WeatherState.rainAndSnow:
+      case WeatherStateSymbol.rainAndSnow:
         return "Pioggia e neve";
-      case WeatherState.snow:
+      case WeatherStateSymbol.snow:
         return "Neve";
-      case WeatherState.rainShower:
+      case WeatherStateSymbol.rainShower:
         return "Pioggia abbondante";
-      case WeatherState.snowShower:
+      case WeatherStateSymbol.snowShower:
         return "Neve abbondante";
-      case WeatherState.sleetShower:
+      case WeatherStateSymbol.sleetShower:
         return "Nevischio abbondante";
-      case WeatherState.ligthFog:
+      case WeatherStateSymbol.ligthFog:
         return "Nebbia leggera";
-      case WeatherState.denseFog:
+      case WeatherStateSymbol.denseFog:
         return "Nebbia fitta";
-      case WeatherState.freezingRain:
+      case WeatherStateSymbol.freezingRain:
         return "Pioggia ghiacciata";
-      case WeatherState.thunderstorms:
+      case WeatherStateSymbol.thunderstorms:
         return "Temporale";
-      case WeatherState.drizzle:
+      case WeatherStateSymbol.drizzle:
         return "Pioggia leggerissima";
-      case WeatherState.sandstorm:
+      case WeatherStateSymbol.sandstorm:
         return "Tempesta di sabbia";
       default:
         return "Non disponibile";
@@ -65,45 +65,45 @@ extension WeatherStateExtension on WeatherState {
 
   IconData image(bool isNight) {
     switch (this) {
-      case WeatherState.notDeterminate:
+      case WeatherStateSymbol.notDeterminate:
         return FontAwesomeIcons.question;
-      case WeatherState.clearSky:
+      case WeatherStateSymbol.clearSky:
         return isNight ? FontAwesomeIcons.moon : FontAwesomeIcons.sun;
-      case WeatherState.lightClouds:
+      case WeatherStateSymbol.lightClouds:
         return isNight ? FontAwesomeIcons.cloudMoon : FontAwesomeIcons.cloudSun;
-      case WeatherState.partlyCloudy:
+      case WeatherStateSymbol.partlyCloudy:
         return isNight ? FontAwesomeIcons.cloudMoon : FontAwesomeIcons.cloudSun;
-      case WeatherState.cloudy:
+      case WeatherStateSymbol.cloudy:
         return FontAwesomeIcons.cloud;
-      case WeatherState.rain:
+      case WeatherStateSymbol.rain:
         return FontAwesomeIcons.cloudRain;
-      case WeatherState.rainAndSnow:
+      case WeatherStateSymbol.rainAndSnow:
         return FontAwesomeIcons.cloudMeatball;
-      case WeatherState.snow:
+      case WeatherStateSymbol.snow:
         return FontAwesomeIcons.snowflake;
-      case WeatherState.rainShower:
+      case WeatherStateSymbol.rainShower:
         return isNight
             ? FontAwesomeIcons.cloudMoonRain
             : FontAwesomeIcons.cloudSunRain;
-      case WeatherState.snowShower:
+      case WeatherStateSymbol.snowShower:
         return isNight
             ? FontAwesomeIcons.cloudMoonRain
             : FontAwesomeIcons.cloudSunRain;
-      case WeatherState.sleetShower:
+      case WeatherStateSymbol.sleetShower:
         return isNight
             ? FontAwesomeIcons.cloudMoonRain
             : FontAwesomeIcons.cloudSunRain;
-      case WeatherState.ligthFog:
+      case WeatherStateSymbol.ligthFog:
         return FontAwesomeIcons.minus;
-      case WeatherState.denseFog:
+      case WeatherStateSymbol.denseFog:
         return FontAwesomeIcons.minus;
-      case WeatherState.freezingRain:
+      case WeatherStateSymbol.freezingRain:
         return FontAwesomeIcons.cloudMeatball;
-      case WeatherState.thunderstorms:
+      case WeatherStateSymbol.thunderstorms:
         return FontAwesomeIcons.cloudBolt;
-      case WeatherState.drizzle:
+      case WeatherStateSymbol.drizzle:
         return FontAwesomeIcons.cloudRain;
-      case WeatherState.sandstorm:
+      case WeatherStateSymbol.sandstorm:
         return FontAwesomeIcons.soundcloud;
       default:
         return FontAwesomeIcons.question;

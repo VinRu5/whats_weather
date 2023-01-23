@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
 
 class HeaderInfo extends StatelessWidget {
-  const HeaderInfo({super.key});
+  final WeatherDay weatherDay;
+
+  const HeaderInfo({
+    required this.weatherDay,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +70,7 @@ class HeaderInfo extends StatelessWidget {
       );
 
   Widget get tempNow => Text(
-        "23°",
+        "${weatherDay.temperature}°",
         style: WeatherTheme.tempBig,
         textAlign: TextAlign.center,
       );

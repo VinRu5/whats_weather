@@ -1,4 +1,4 @@
-import 'package:whats_weather/models/enum/weather_state.dart';
+import 'package:whats_weather/models/enum/weather_state_symbol.dart';
 import 'package:whats_weather/models/report_day.dart';
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/models/weather_day_data.dart';
@@ -35,7 +35,7 @@ class WeatherMapper {
               element.date,
               () => WeatherDayData(
                 weatherSymbol: parameters == "weatherStates"
-                    ? WeatherState.values[(element.value as int)]
+                    ? WeatherStateSymbol.values[(element.value as int)]
                     : null,
                 temperature: parameters == "temperatures"
                     ? (element.value as double)
@@ -60,7 +60,7 @@ class WeatherMapper {
               element.date,
               (value) => WeatherDayData(
                 weatherSymbol: parameters == "weatherStates"
-                    ? WeatherState.values[(element.value as int)]
+                    ? WeatherStateSymbol.values[(element.value as int)]
                     : value.weatherSymbol,
                 temperature: parameters == "temperatures"
                     ? (element.value as double)
@@ -103,7 +103,7 @@ class WeatherMapper {
                 temperatureMax:
                     parameters == "temperaturesMax" ? weatherData.value : null,
                 weatherSymbol: parameters == "weatherStates"
-                    ? WeatherState.values[weatherData.value]
+                    ? WeatherStateSymbol.values[weatherData.value]
                     : null,
                 date: weatherData.date,
               ),
@@ -119,7 +119,7 @@ class WeatherMapper {
                     ? weatherData.value
                     : value.temperatureMax,
                 weatherSymbol: parameters == "weatherStates"
-                    ? WeatherState.values[weatherData.value]
+                    ? WeatherStateSymbol.values[weatherData.value]
                     : value.weatherSymbol,
                 date: value.date,
               ),
@@ -140,7 +140,7 @@ class WeatherMapper {
       temperature: weatherDayDTO.temperature,
       temperatureMax: weatherDayDTO.temparatureMax,
       temperatureMin: weatherDayDTO.temperatureMin,
-      weatherSymbol: WeatherState.values[weatherDayDTO.weatherSymbol],
+      weatherSymbol: WeatherStateSymbol.values[weatherDayDTO.weatherSymbol],
       windSpeed: weatherDayDTO.windSpeed,
       allWeatherDays: allWeatherDays,
       weatherWeek: weatherWeek,

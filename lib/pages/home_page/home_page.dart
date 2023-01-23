@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:whats_weather/blocs/weather/weather_bloc.dart';
 import 'package:whats_weather/misc/painter/weather_arc.dart';
 import 'package:whats_weather/pages/home_page/widget/header_info.dart';
 import 'package:whats_weather/pages/home_page/widget/more_info.dart';
-import 'package:whats_weather/services/geo_services.dart';
-import 'package:whats_weather/services/network/weather_service.dart';
+import 'package:whats_weather/repositories/weather_repository.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
+import 'package:whats_weather/widgets/loading_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,10 +39,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: WeatherTheme.backRose,
-      appBar: appBar,
-      body: body,
+    return BlocProvider(
+      create: (context) =>
+          WeatherBloc(context.read<WeatherRepository>())..getWeatherData(),
+      child: Scaffold(
+        backgroundColor: WeatherTheme.backRose,
+        appBar: appBar,
+        body: body,
+      ),
     );
   }
 
@@ -81,13 +87,27 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
-  Widget get body => ListView(
-        physics: const ClampingScrollPhysics(),
-        children: [
-          HeaderInfo(),
-          divider(),
-          MoreInfo(),
-        ],
+  Widget get body => BlocBuilder<WeatherBloc, WeatherState>(
+        builder: (context, state) {
+          if (state is LoadedWeatherState) {
+            return ListView(
+              physics: const ClampingScrollPhysics(),
+              children: [
+                HeaderInfo(
+                  weatherDay: state.weatherDay,
+                ),
+                divider(),
+                MoreInfo(),
+              ],
+            );
+          } else if (state is ErrorWeatherState) {
+            return Center(
+              child: Text(state.errorMessage ?? ''),
+            );
+          }
+
+          return const LoadingWidget();
+        },
       );
 
   Widget divider() => SizedBox(
