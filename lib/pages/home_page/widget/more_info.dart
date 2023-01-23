@@ -54,18 +54,20 @@ class MoreInfo extends StatelessWidget {
         ],
       );
 
-  Widget get otherDays => Container(
-        height: 120.0,
-        padding: const EdgeInsets.symmetric(vertical: 24.0),
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemCount: 5,
-          separatorBuilder: (context, index) => const SizedBox(width: 24.0),
-          itemBuilder: (context, index) => CardWeatherDay(
-            nameDay: "Sun",
-            weatherSymbol: FontAwesomeIcons.cloud,
-            temperatureMin: 20.0,
-            temperatureMax: 30.0,
+  Widget get otherDays => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 48.0),
+        child: SizedBox(
+          height: 70.0,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: 5,
+            separatorBuilder: (context, index) => const SizedBox(width: 24.0),
+            itemBuilder: (context, index) => CardWeatherDay(
+              nameDay: "Sun",
+              weatherSymbol: FontAwesomeIcons.cloud,
+              temperatureMin: 20.0,
+              temperatureMax: 30.0,
+            ),
           ),
         ),
       );
