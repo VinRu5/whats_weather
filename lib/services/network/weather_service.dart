@@ -28,11 +28,11 @@ class WeatherService {
     double latitude,
     double longitude,
   ) async {
-    final String initialDateParse =
-        DateFormat("y-MM-dThh:mm:ss").format(initialDate);
-    final String endDateParse = DateFormat("y-MM-dThh:mm:ss").format(endDate);
+    final String initialDateParse = DateFormat("y-MM-d").format(initialDate);
+    final String endDateParse = DateFormat("y-MM-d").format(endDate);
 
-    final String dateString = "${initialDateParse}Z--${endDateParse}Z:PT24H";
+    final String dateString =
+        "${initialDateParse}T00:00:00Z--${endDateParse}T23:00:00Z:PT24H";
 
     final String coordinates = "$latitude,$longitude";
 
@@ -91,25 +91,24 @@ class WeatherService {
     double latitude,
     double longitude,
   ) async {
-    final String initialDateParse = DateFormat("y-MM-dThh:mm:ss").format(
+    final String initialDateParse = DateFormat("y-MM-d").format(
       DateTime(
         date.year,
         date.month,
         date.day,
-        00,
       ),
     );
 
-    final String endDateParse = DateFormat("y-MM-dThh:mm:ss").format(
+    final String endDateParse = DateFormat("y-MM-d").format(
       DateTime(
         date.year,
         date.month,
         date.day,
-        23,
       ),
     );
 
-    final String dateString = "${initialDateParse}Z--${endDateParse}Z:PT1H";
+    final String dateString =
+        "${initialDateParse}T00:00:00Z--${endDateParse}T23:00:00Z:PT1H";
 
     final String coordinates = "$latitude,$longitude";
 

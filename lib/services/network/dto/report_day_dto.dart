@@ -37,12 +37,14 @@ class ReportDayDTO extends Equatable {
   static List<WeatherDataModel> _getData<T>(List<dynamic> map) {
     List<WeatherDataModel> list = [];
 
+    //final date = DateTime.tryParse(map[0].date);
+
     for (var element in map) {
       list.add(
         WeatherDataModel<T>(
-          date: DateTime.tryParse(element.date) ??
+          date: DateTime.tryParse(element["date"]) ??
               DateTime.fromMillisecondsSinceEpoch(0),
-          value: element.value,
+          value: element["value"],
         ),
       );
     }
