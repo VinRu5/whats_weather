@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:whats_weather/models/enum/weather_status.dart';
+import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/pages/home_page/widget/card_weather_day.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
 
 class MoreInfo extends StatelessWidget {
-  const MoreInfo({super.key});
+  final WeatherDay weatherDay;
+
+  const MoreInfo({
+    required this.weatherDay,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +33,12 @@ class MoreInfo extends StatelessWidget {
         children: [
           viewData(
             title: "Precipitazioni",
-            value: 0.2,
+            value: weatherDay.precipitationAmount,
             unit: "mm",
           ),
           viewData(
             title: "Velocità del vento",
-            value: 4.2,
+            value: weatherDay.windSpeed,
             unit: "m/s",
           ),
         ],
@@ -60,15 +69,25 @@ class MoreInfo extends StatelessWidget {
           height: 70.0,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: weatherDay.weatherWeek.length,
             separatorBuilder: (context, index) => const SizedBox(width: 24.0),
             itemBuilder: (context, index) => CardWeatherDay(
-              nameDay: "Sun",
-              weatherSymbol: FontAwesomeIcons.cloud,
-              temperatureMin: 20.0,
-              temperatureMax: 30.0,
+              nameDay: getDayName(weatherDay.weatherWeek[index].date),
+              weatherSymbol: (weatherDay.weatherWeek[index].weatherSymbol ??
+                      WeatherStatus.notDeterminate)
+                  .image(false),
+              temperatureMin: weatherDay.weatherWeek[index].temperatureMin ?? 0,
+              temperatureMax: weatherDay.weatherWeek[index].temperatureMax ?? 0,
             ),
           ),
         ),
       );
+
+  String getDayName(DateTime? date) {
+    initializeDateFormatting();
+    if (date != null) {
+      return DateFormat("EEE", 'it').format(date);
+    }
+    return "";
+  }
 }

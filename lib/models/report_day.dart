@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:whats_weather/models/enum/weather_state_symbol.dart';
+import 'package:whats_weather/models/enum/weather_status.dart';
 
 class ReportDay extends Equatable {
   double? temperatureMin, temperatureMax;
-  WeatherStateSymbol? weatherSymbol;
+  WeatherStatus? weatherSymbol;
   DateTime? date;
 
   ReportDay({

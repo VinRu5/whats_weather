@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:whats_weather/models/enum/weather_state_symbol.dart';
+import 'package:whats_weather/models/enum/weather_status.dart';
 import 'package:whats_weather/models/report_day.dart';
 import 'package:whats_weather/models/weather_day_data.dart';
 import 'package:whats_weather/services/network/dto/all_weather_day_dto.dart';
@@ -11,7 +11,7 @@ class WeatherDay extends Equatable {
       temperatureMax,
       precipitationAmount,
       windSpeed;
-  final WeatherStateSymbol weatherSymbol;
+  final WeatherStatus weatherSymbol;
   final List<WeatherDayData> allWeatherDays;
   final List<ReportDay> weatherWeek;
 

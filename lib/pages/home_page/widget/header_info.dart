@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:whats_weather/misc/painter/weather_icons/moon.dart';
+
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
 
@@ -22,15 +25,23 @@ class HeaderInfo extends StatelessWidget {
   }
 
   Widget get weatherSymbol => Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 32.0,
-          horizontal: 16.0,
+      padding: const EdgeInsets.symmetric(
+        vertical: 32.0,
+        horizontal: 16.0,
+      ),
+      child: SizedBox(
+        width: 150.0,
+        height: 150.0,
+        child: CustomPaint(
+          painter: Moon(),
         ),
-        child: Icon(
-          FontAwesomeIcons.solidSun,
-          color: WeatherTheme.orange,
-          size: 150.0,
-        ),
+      )
+
+      // Icon(
+      //   FontAwesomeIcons.solidSun,
+      //   color: WeatherTheme.orange,
+      //   size: 150.0,
+      // ),
       );
 
   Widget get dayTemperatures => Padding(
@@ -44,12 +55,12 @@ class HeaderInfo extends StatelessWidget {
           children: [
             temperature(
               true,
-              20.0,
+              weatherDay.temperatureMin,
             ),
             Expanded(child: tempNow),
             temperature(
               false,
-              25.0,
+              weatherDay.temperatureMax,
             ),
           ],
         ),
@@ -63,14 +74,14 @@ class HeaderInfo extends StatelessWidget {
           ),
           const SizedBox(width: 4.0),
           Text(
-            "$tempValue°",
+            "${tempValue.toStringAsFixed(0)}°",
             style: WeatherTheme.tempLight,
           ),
         ],
       );
 
   Widget get tempNow => Text(
-        "${weatherDay.temperature}°",
+        "${weatherDay.temperature.toStringAsFixed(0)}°",
         style: WeatherTheme.tempBig,
         textAlign: TextAlign.center,
       );

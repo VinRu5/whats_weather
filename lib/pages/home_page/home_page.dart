@@ -97,7 +97,9 @@ class _HomePageState extends State<HomePage> {
                   weatherDay: state.weatherDay,
                 ),
                 divider(),
-                MoreInfo(),
+                MoreInfo(
+                  weatherDay: state.weatherDay,
+                ),
               ],
             );
           } else if (state is ErrorWeatherState) {

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 class WeatherTheme {
   ///colori
-  static const Color backRose = Color(0xFFe5c7b5);
-  static const Color backBlack = Color(0xFF2b2b2b);
+  static const Color backRose = Color(0xFFEBC6B2);
+  static const Color backBlack = Color(0xFF2A2A2A);
   static const Color black = Color(0xFF313131);
-  static const Color backBlue = Color(0xFFcbcfd0);
-  static const Color backGreen = Color(0xFFd1d7cc);
-  static const Color backBrown = Color(0xFFd5cbb8);
-  static const Color orange = Color(0xFFf0973e);
-  static const Color yellow = Color(0xFFf2be47);
-  static const Color cyan = Color(0xFF90bbfa);
-  static const Color gold = Color(0xFFe3d3b6);
+  static const Color backBlue = Color(0xFFBABFC0);
+  static const Color backGreen = Color(0xFFBEC8BA);
+  static const Color backBrown = Color(0xFFD7CAB4);
+  static const Color orange = Color(0xFFFF881E); //Color(0xFFC25D10);
+  static const Color yellow = Color(0xFFFBAD17);
+  static const Color cyan = Color(0xFF5AA2FF);
+  static const Color gold = Color(0xFFDEC6A2);
   static const Color trasparent = Colors.transparent;
   static const Color white = Colors.white;
 
