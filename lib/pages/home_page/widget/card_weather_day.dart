@@ -3,7 +3,7 @@ import 'package:whats_weather/theme/weather_theme.dart';
 
 class CardWeatherDay extends StatelessWidget {
   final String nameDay;
-  final IconData weatherSymbol;
+  final CustomPainter weatherSymbol;
   final double temperatureMin;
   final double temperatureMax;
 
@@ -19,9 +19,9 @@ class CardWeatherDay extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: [
           dayNameView,
-          const SizedBox(height: 4.0),
+          const SizedBox(height: 8.0),
           weatherSymbolView,
-          const SizedBox(height: 4.0),
+          const SizedBox(height: 8.0),
           temperaturesView,
         ],
       );
@@ -31,10 +31,12 @@ class CardWeatherDay extends StatelessWidget {
         style: WeatherTheme.dayName,
       );
 
-  Widget get weatherSymbolView => Icon(
-        weatherSymbol,
-        color: WeatherTheme.white,
-        size: 20.0,
+  Widget get weatherSymbolView => SizedBox(
+        width: 20.0,
+        height: 20.0,
+        child: CustomPaint(
+          painter: weatherSymbol,
+        ),
       );
 
   Widget get temperaturesView => Row(

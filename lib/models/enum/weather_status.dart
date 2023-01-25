@@ -1,5 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:whats_weather/misc/painter/weather_icons/cloud.dart';
+import 'package:whats_weather/misc/painter/weather_icons/cloud_question.dart';
+import 'package:whats_weather/misc/painter/weather_icons/cloud_sun.dart';
+import 'package:whats_weather/misc/painter/weather_icons/fog.dart';
+import 'package:whats_weather/misc/painter/weather_icons/moon.dart';
+import 'package:whats_weather/misc/painter/weather_icons/rain.dart';
+import 'package:whats_weather/misc/painter/weather_icons/rain_snow.dart';
+import 'package:whats_weather/misc/painter/weather_icons/snow.dart';
+import 'package:whats_weather/misc/painter/weather_icons/sun.dart';
+import 'package:whats_weather/misc/painter/weather_icons/thunderstorm.dart';
+import 'package:whats_weather/theme/weather_theme.dart';
 
 enum WeatherStatus {
   notDeterminate,
@@ -63,50 +74,44 @@ extension WeatherStatusExtension on WeatherStatus {
     }
   }
 
-  IconData image(bool isNight) {
+  CustomPainter image(bool isNight) {
     switch (this) {
       case WeatherStatus.notDeterminate:
-        return FontAwesomeIcons.question;
+        return CloudQuestion();
       case WeatherStatus.clearSky:
-        return isNight ? FontAwesomeIcons.moon : FontAwesomeIcons.sun;
+        return isNight ? Moon() : Sun(WeatherTheme.orange);
       case WeatherStatus.lightClouds:
-        return isNight ? FontAwesomeIcons.cloudMoon : FontAwesomeIcons.cloudSun;
+        return isNight ? Cloud() : CloudSun();
       case WeatherStatus.partlyCloudy:
-        return isNight ? FontAwesomeIcons.cloudMoon : FontAwesomeIcons.cloudSun;
+        return isNight ? Cloud() : CloudSun();
       case WeatherStatus.cloudy:
-        return FontAwesomeIcons.cloud;
+        return Cloud();
       case WeatherStatus.rain:
-        return FontAwesomeIcons.cloudRain;
+        return Rain();
       case WeatherStatus.rainAndSnow:
-        return FontAwesomeIcons.cloudMeatball;
+        return RainSnow();
       case WeatherStatus.snow:
-        return FontAwesomeIcons.snowflake;
+        return Snow();
       case WeatherStatus.rainShower:
-        return isNight
-            ? FontAwesomeIcons.cloudMoonRain
-            : FontAwesomeIcons.cloudSunRain;
+        return Rain();
       case WeatherStatus.snowShower:
-        return isNight
-            ? FontAwesomeIcons.cloudMoonRain
-            : FontAwesomeIcons.cloudSunRain;
+        return RainSnow();
       case WeatherStatus.sleetShower:
-        return isNight
-            ? FontAwesomeIcons.cloudMoonRain
-            : FontAwesomeIcons.cloudSunRain;
+        return Rain();
       case WeatherStatus.ligthFog:
-        return FontAwesomeIcons.minus;
+        return Fog();
       case WeatherStatus.denseFog:
-        return FontAwesomeIcons.minus;
+        return Fog();
       case WeatherStatus.freezingRain:
-        return FontAwesomeIcons.cloudMeatball;
+        return RainSnow();
       case WeatherStatus.thunderstorms:
-        return FontAwesomeIcons.cloudBolt;
+        return Thunderstorm();
       case WeatherStatus.drizzle:
-        return FontAwesomeIcons.cloudRain;
+        return Rain();
       case WeatherStatus.sandstorm:
-        return FontAwesomeIcons.soundcloud;
+        return Fog();
       default:
-        return FontAwesomeIcons.question;
+        return CloudQuestion();
     }
   }
 }

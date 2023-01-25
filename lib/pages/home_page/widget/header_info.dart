@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:whats_weather/misc/painter/weather_icons/moon.dart';
+import 'package:whats_weather/models/enum/weather_status.dart';
 
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
@@ -25,23 +24,17 @@ class HeaderInfo extends StatelessWidget {
   }
 
   Widget get weatherSymbol => Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 32.0,
-        horizontal: 16.0,
-      ),
-      child: SizedBox(
-        width: 150.0,
-        height: 150.0,
-        child: CustomPaint(
-          painter: Moon(),
+        padding: const EdgeInsets.symmetric(
+          vertical: 32.0,
+          horizontal: 16.0,
         ),
-      )
-
-      // Icon(
-      //   FontAwesomeIcons.solidSun,
-      //   color: WeatherTheme.orange,
-      //   size: 150.0,
-      // ),
+        child: SizedBox(
+          width: 150.0,
+          height: 150.0,
+          child: CustomPaint(
+            painter: weatherDay.weatherSymbol.image(false),
+          ),
+        ),
       );
 
   Widget get dayTemperatures => Padding(

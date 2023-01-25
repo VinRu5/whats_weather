@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:whats_weather/models/enum/weather_status.dart';
@@ -66,7 +66,7 @@ class MoreInfo extends StatelessWidget {
   Widget get otherDays => Padding(
         padding: const EdgeInsets.symmetric(vertical: 48.0),
         child: SizedBox(
-          height: 70.0,
+          height: 80.0,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: weatherDay.weatherWeek.length,
