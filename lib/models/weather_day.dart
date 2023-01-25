@@ -1,9 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:whats_weather/models/enum/weather_status.dart';
 import 'package:whats_weather/models/report_day.dart';
 import 'package:whats_weather/models/weather_day_data.dart';
-import 'package:whats_weather/services/network/dto/all_weather_day_dto.dart';
 
 class WeatherDay extends Equatable {
   final double temperature,
@@ -15,6 +13,7 @@ class WeatherDay extends Equatable {
   final DateTime date, sunrise, sunset;
   final List<WeatherDayData> allWeatherDays;
   final List<ReportDay> weatherWeek;
+  final bool isNight;
 
   const WeatherDay({
     required this.temperature,
@@ -28,6 +27,7 @@ class WeatherDay extends Equatable {
     required this.weatherWeek,
     required this.sunrise,
     required this.sunset,
+    required this.isNight,
   });
 
   @override
@@ -38,8 +38,12 @@ class WeatherDay extends Equatable {
         precipitationAmount,
         windSpeed,
         weatherSymbol,
+        date,
         allWeatherDays,
         weatherWeek,
+        sunrise,
+        sunset,
+        isNight,
       ];
 
   // IconData get weatherSymbolNow {

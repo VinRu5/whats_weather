@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
                 ? getBackgroundColor(
                     state.weatherDay.weatherSymbol,
                     state.weatherDay.temperature,
+                    state.weatherDay.isNight,
                   )
                 : WeatherTheme.backRose,
             appBar: appBar,
@@ -137,7 +138,12 @@ class _HomePageState extends State<HomePage> {
   Color getBackgroundColor(
     WeatherStatus status,
     double temperature,
+    bool isNight,
   ) {
+    if (isNight) {
+      return WeatherTheme.backBlack;
+    }
+
     if (status == WeatherStatus.clearSky) {
       if (temperature < 22.0) {
         return WeatherTheme.backBlue;

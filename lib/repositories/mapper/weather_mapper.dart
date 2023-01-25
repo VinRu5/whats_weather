@@ -140,13 +140,24 @@ class WeatherMapper {
       temperature: weatherDayDTO.temperature,
       temperatureMax: weatherDayDTO.temparatureMax,
       temperatureMin: weatherDayDTO.temperatureMin,
-      weatherSymbol: WeatherStatus.values[weatherDayDTO.weatherSymbol],
+      weatherSymbol: _getWeatherSymbol(weatherDayDTO.weatherSymbol),
       windSpeed: weatherDayDTO.windSpeed,
       date: weatherDayDTO.date,
       allWeatherDays: allWeatherDays,
       weatherWeek: weatherWeek,
       sunrise: weatherDayDTO.sunrise,
       sunset: weatherDayDTO.sunset,
+      isNight: weatherDayDTO.weatherSymbol > 100,
     );
+  }
+
+  WeatherStatus _getWeatherSymbol(int weatherSymbolIndex) {
+    if (weatherSymbolIndex > 100) {
+      final String numberString = weatherSymbolIndex.toString().substring(1);
+      final int newIndex = int.parse(numberString);
+
+      return WeatherStatus.values[newIndex];
+    }
+    return WeatherStatus.values[weatherSymbolIndex];
   }
 }
