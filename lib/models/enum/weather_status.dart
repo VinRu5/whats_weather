@@ -74,12 +74,16 @@ extension WeatherStatusExtension on WeatherStatus {
     }
   }
 
-  CustomPainter image(bool isNight) {
+  CustomPainter image(bool isNight, [bool isHot = false]) {
     switch (this) {
       case WeatherStatus.notDeterminate:
         return CloudQuestion();
       case WeatherStatus.clearSky:
-        return isNight ? Moon() : Sun(WeatherTheme.orange);
+        return isNight
+            ? Moon()
+            : Sun(
+                isHot ? WeatherTheme.orange : WeatherTheme.yellow,
+              );
       case WeatherStatus.lightClouds:
         return isNight ? Cloud() : CloudSun();
       case WeatherStatus.partlyCloudy:

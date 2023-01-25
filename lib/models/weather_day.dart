@@ -12,6 +12,7 @@ class WeatherDay extends Equatable {
       precipitationAmount,
       windSpeed;
   final WeatherStatus weatherSymbol;
+  final DateTime date, sunrise, sunset;
   final List<WeatherDayData> allWeatherDays;
   final List<ReportDay> weatherWeek;
 
@@ -22,8 +23,11 @@ class WeatherDay extends Equatable {
     required this.precipitationAmount,
     required this.windSpeed,
     required this.weatherSymbol,
+    required this.date,
     required this.allWeatherDays,
     required this.weatherWeek,
+    required this.sunrise,
+    required this.sunset,
   });
 
   @override

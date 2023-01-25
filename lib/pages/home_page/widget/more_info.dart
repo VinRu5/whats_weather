@@ -21,32 +21,40 @@ class MoreInfo extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
-          dayData,
+          dayData(true),
+          const SizedBox(height: 24.0),
+          dayData(false),
           otherDays,
         ],
       ),
     );
   }
 
-  Widget get dayData => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget dayData(bool sunData) => Row(
+        mainAxisAlignment:
+            sunData ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
         children: [
           viewData(
-            title: "Precipitazioni",
-            value: weatherDay.precipitationAmount,
-            unit: "mm",
+            title: sunData ? "Alba" : "Precipitazioni",
+            value: sunData
+                ? DateFormat("H:m").format(weatherDay.sunrise)
+                : weatherDay.precipitationAmount.toString(),
+            unit: sunData ? "" : "mm",
           ),
+          const SizedBox(width: 16.0),
           viewData(
-            title: "Velocità del vento",
-            value: weatherDay.windSpeed,
-            unit: "m/s",
+            title: sunData ? "Tramonto" : "Velocità del vento",
+            value: sunData
+                ? DateFormat("H:m").format(weatherDay.sunset)
+                : weatherDay.windSpeed.toString(),
+            unit: sunData ? "" : "m/s",
           ),
         ],
       );
 
   Widget viewData({
     required String title,
-    required double value,
+    required String value,
     required String unit,
   }) =>
       Column(
@@ -75,7 +83,10 @@ class MoreInfo extends StatelessWidget {
               nameDay: getDayName(weatherDay.weatherWeek[index].date),
               weatherSymbol: (weatherDay.weatherWeek[index].weatherSymbol ??
                       WeatherStatus.notDeterminate)
-                  .image(false),
+                  .image(
+                      false,
+                      (weatherDay.weatherWeek[index].temperatureMax ?? 0) >=
+                          22.0),
               temperatureMin: weatherDay.weatherWeek[index].temperatureMin ?? 0,
               temperatureMax: weatherDay.weatherWeek[index].temperatureMax ?? 0,
             ),

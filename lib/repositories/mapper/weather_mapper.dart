@@ -142,8 +142,11 @@ class WeatherMapper {
       temperatureMin: weatherDayDTO.temperatureMin,
       weatherSymbol: WeatherStatus.values[weatherDayDTO.weatherSymbol],
       windSpeed: weatherDayDTO.windSpeed,
+      date: weatherDayDTO.date,
       allWeatherDays: allWeatherDays,
       weatherWeek: weatherWeek,
+      sunrise: weatherDayDTO.sunrise,
+      sunset: weatherDayDTO.sunset,
     );
   }
 }

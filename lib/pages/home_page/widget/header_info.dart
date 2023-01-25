@@ -32,7 +32,8 @@ class HeaderInfo extends StatelessWidget {
           width: 150.0,
           height: 150.0,
           child: CustomPaint(
-            painter: weatherDay.weatherSymbol.image(false),
+            painter: weatherDay.weatherSymbol
+                .image(false, weatherDay.temperature >= 22.0),
           ),
         ),
       );

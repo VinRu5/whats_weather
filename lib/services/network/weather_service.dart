@@ -16,11 +16,8 @@ class WeatherService {
   final String host = "http://api.meteomatics.com";
   final String reportParameters =
       "t_2m:C,t_min_2m_24h:C,t_max_2m_24h:C,weather_symbol_24h:idx,precip_24h:mm,wind_speed_10m:ms";
-  //final String coordinates = "52.520551,13.461804";
+  final String sunParameters = "sunrise:sql,sunset:sql";
   final String typeFile = "json";
-
-  // final String urlLong =
-  //     "http://api.meteomatics.com/2023-01-17T00:00:00Z--2023-01-18T00:00:00Z:PT1H/t_2m:C/52.520551,13.461804/json";
 
   Future<ReportDayDTO> fetchReportWeather(
     DateTime initialDate,
@@ -68,7 +65,7 @@ class WeatherService {
     final String coordinates = "$latitude,$longitude";
 
     final String url =
-        "$host/$dateString/$reportParameters/$coordinates/$typeFile";
+        "$host/$dateString/$reportParameters,$sunParameters/$coordinates/$typeFile";
 
     http.Response response = await http.get(
       Uri.parse(url),
