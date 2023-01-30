@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               context,
               state is LoadedWeatherState ? state.cityName : "",
             ),
-            body: body(state),
+            body: body(context, state),
           );
         },
       ),
@@ -73,9 +73,6 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         scrolledUnderElevation: 0,
         backgroundColor: WeatherTheme.trasparent,
-        // systemOverlayStyle: SystemUiOverlayStyle(
-        //   systemNavigationBarIconBrightness: Brightness.dark,
-        // ),
         leading: IconButton(
           onPressed: () {
             setState(() {
@@ -113,7 +110,7 @@ class _HomePageState extends State<HomePage> {
         ],
       );
 
-  Widget body(WeatherState state) {
+  Widget body(BuildContext context, WeatherState state) {
     if (state is LoadedWeatherState) {
       return ListView(
         physics: const ClampingScrollPhysics(),
@@ -127,8 +124,16 @@ class _HomePageState extends State<HomePage> {
             state.weatherDay.sunset,
           ),
           MoreInfo(
-            weatherDay: state.weatherDay,
-          ),
+              weatherDay: state.weatherDay,
+              onDayTap: (reportDate) {
+                context.read<WeatherBloc>().getWeatherData(
+                      date: DateTime(
+                        reportDate.year,
+                        reportDate.month,
+                        reportDate.day,
+                      ),
+                    );
+              }),
         ],
       );
     } else if (state is ErrorWeatherState) {
@@ -293,7 +298,7 @@ class _HomePageState extends State<HomePage> {
       return;
     }
 
-    context.read<WeatherBloc>().getWeatherData(myPosition);
+    context.read<WeatherBloc>().getWeatherData(position: myPosition);
     //check(context, myPosition);
 
     print(myPosition);

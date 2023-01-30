@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:whats_weather/models/enum/weather_status.dart';
+import 'package:whats_weather/models/report_day.dart';
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/pages/home_page/widget/card_weather_day.dart';
 import 'package:whats_weather/pages/home_page/widget/weather_day_tile.dart';
@@ -10,9 +11,11 @@ import 'package:whats_weather/theme/weather_theme.dart';
 
 class MoreInfo extends StatelessWidget {
   final WeatherDay weatherDay;
+  final Function(DateTime) onDayTap;
 
   const MoreInfo({
     required this.weatherDay,
+    required this.onDayTap,
     super.key,
   });
 
@@ -91,6 +94,9 @@ class MoreInfo extends StatelessWidget {
                           22.0),
               temperatureMin: weatherDay.weatherWeek[index].temperatureMin ?? 0,
               temperatureMax: weatherDay.weatherWeek[index].temperatureMax ?? 0,
+              onTap: () => onDayTap(
+                weatherDay.weatherWeek[index].date ?? DateTime.now(),
+              ),
             ),
           ),
         ),

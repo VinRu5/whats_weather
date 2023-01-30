@@ -9,6 +9,7 @@ abstract class WeatherEvent extends Equatable {
 
 class FetchWeatherEvent extends WeatherEvent {
   final PositionCity? position;
+  final DateTime? date;
 
-  const FetchWeatherEvent({this.position});
+  const FetchWeatherEvent({this.date, this.position});
 }

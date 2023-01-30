@@ -27,7 +27,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 
     try {
       final WeatherDay weatherDay =
-          await weatherRepository.fetchDayData(event.position);
+          await weatherRepository.fetchDayData(event.date, event.position);
       final String nameCity = await geoRepository.getAddress(event.position);
 
       emit(LoadedWeatherState(weatherDay, nameCity));
@@ -36,6 +36,14 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     }
   }
 
-  void getWeatherData([PositionCity? position]) =>
-      add(FetchWeatherEvent(position: position));
+  void getWeatherData({
+    DateTime? date,
+    PositionCity? position,
+  }) =>
+      add(
+        FetchWeatherEvent(
+          position: position,
+          date: date,
+        ),
+      );
 }

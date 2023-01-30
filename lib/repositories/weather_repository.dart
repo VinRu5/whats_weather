@@ -21,12 +21,14 @@ class WeatherRepository {
     required this.mapper,
   });
 
-  Future<WeatherDay> fetchDayData([PositionCity? positionCity]) async {
-    final DateTime today = DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-    );
+  Future<WeatherDay> fetchDayData(
+      [DateTime? requestDate, PositionCity? positionCity]) async {
+    final DateTime date = requestDate ??
+        DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+        );
 
     Position? position;
 
@@ -41,7 +43,7 @@ class WeatherRepository {
     try {
       final AllWeatherDayDTO allWeatherDays =
           await weatherService.fetchAllWeatherDay(
-        today,
+        date,
         (positionCity != null ? positionCity.latitude : position?.latitude) ??
             0.0,
         (positionCity != null ? positionCity.longitude : position?.longitude) ??
@@ -49,10 +51,10 @@ class WeatherRepository {
       );
 
       final ReportDayDTO reportDays = await weatherService.fetchReportWeather(
-        today.add(
+        date.add(
           const Duration(days: 1),
         ),
-        today.add(
+        date.add(
           const Duration(days: 6),
         ),
         (positionCity != null ? positionCity.latitude : position?.latitude) ??
@@ -62,7 +64,7 @@ class WeatherRepository {
       );
 
       final WeatherDayDTO weatherDayDTO = await weatherService.fetchWeatherDay(
-        today,
+        date,
         (positionCity != null ? positionCity.latitude : position?.latitude) ??
             0.0,
         (positionCity != null ? positionCity.longitude : position?.longitude) ??

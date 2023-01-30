@@ -40,7 +40,7 @@ class WeatherDayTile extends StatelessWidget {
         DateFormat("hh:mm", "it").format(
           weatherHourData.date ?? DateTime.now(),
         ),
-        style: WeatherTheme.dayUnit,
+        style: WeatherTheme.dayData,
       );
 
   Widget get symbol => SizedBox(
