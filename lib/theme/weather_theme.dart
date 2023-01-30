@@ -65,6 +65,13 @@ class WeatherTheme {
     fontWeight: FontWeight.w300,
   );
 
+  static const TextStyle tempMedium = TextStyle(
+    fontSize: 20.0,
+    color: black,
+    letterSpacing: 2.0,
+    fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle dateStyle = TextStyle(
     fontSize: 14.0,
     color: black,

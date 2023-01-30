@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whats_weather/models/enum/weather_status.dart';
-
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
+import 'package:whats_weather/widgets/temperature_min_max.dart';
 
 class HeaderInfo extends StatelessWidget {
   final WeatherDay weatherDay;
@@ -47,31 +46,17 @@ class HeaderInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.baseline,
           textBaseline: TextBaseline.alphabetic,
           children: [
-            temperature(
-              true,
-              weatherDay.temperatureMin,
+            TemperatureMinMax(
+              isMin: true,
+              tempValue: weatherDay.temperatureMin,
             ),
             Expanded(child: tempNow),
-            temperature(
-              false,
-              weatherDay.temperatureMax,
+            TemperatureMinMax(
+              isMin: false,
+              tempValue: weatherDay.temperatureMax,
             ),
           ],
         ),
-      );
-
-  Widget temperature(bool isMin, double tempValue) => Row(
-        children: [
-          Icon(
-            isMin ? FontAwesomeIcons.caretDown : FontAwesomeIcons.caretUp,
-            color: WeatherTheme.black,
-          ),
-          const SizedBox(width: 4.0),
-          Text(
-            "${tempValue.toStringAsFixed(0)}°",
-            style: WeatherTheme.tempLight,
-          ),
-        ],
       );
 
   Widget get tempNow => Text(

@@ -5,6 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:whats_weather/models/enum/weather_status.dart';
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/pages/home_page/widget/card_weather_day.dart';
+import 'package:whats_weather/pages/home_page/widget/weather_day_tile.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
 
 class MoreInfo extends StatelessWidget {
@@ -25,6 +26,7 @@ class MoreInfo extends StatelessWidget {
           const SizedBox(height: 24.0),
           dayData(false),
           otherDays,
+          specificationDay,
         ],
       ),
     );
@@ -90,6 +92,21 @@ class MoreInfo extends StatelessWidget {
               temperatureMin: weatherDay.weatherWeek[index].temperatureMin ?? 0,
               temperatureMax: weatherDay.weatherWeek[index].temperatureMax ?? 0,
             ),
+          ),
+        ),
+      );
+
+  Widget get specificationDay => ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: weatherDay.allWeatherDays.length,
+        separatorBuilder: (context, index) => const Divider(
+          color: WeatherTheme.white,
+        ),
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: WeatherDayTile(
+            weatherHourData: weatherDay.allWeatherDays[index],
           ),
         ),
       );
