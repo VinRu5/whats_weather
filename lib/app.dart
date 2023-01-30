@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:whats_weather/repositories/geo_repository.dart';
 import 'package:whats_weather/repositories/mapper/weather_mapper.dart';
 import 'package:whats_weather/repositories/weather_repository.dart';
 import 'package:whats_weather/routes/weather_routes.dart';
 import 'package:whats_weather/services/geo_services.dart';
 import 'package:whats_weather/services/network/weather_service.dart';
-import 'package:whats_weather/theme/weather_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -36,6 +35,11 @@ class App extends StatelessWidget {
                 geoService: context.read<GeoService>(),
                 weatherService: context.read<WeatherService>(),
                 mapper: context.read<WeatherMapper>(),
+              ),
+            ),
+            RepositoryProvider<GeoRepository>(
+              create: (context) => GeoRepository(
+                context.read<GeoService>(),
               ),
             ),
           ],

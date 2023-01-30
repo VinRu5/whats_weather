@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:whats_weather/misc/painter/weather_icons/cloud.dart';
 import 'package:whats_weather/misc/painter/weather_icons/cloud_question.dart';
 import 'package:whats_weather/misc/painter/weather_icons/cloud_sun.dart';

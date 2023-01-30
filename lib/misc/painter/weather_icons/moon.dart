@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:whats_weather/theme/weather_theme.dart';
 
@@ -14,51 +12,7 @@ class Moon extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Path pathMoon = Path();
-    //Path pathMoon2 = Path();
     final center = Offset(size.width / 2, size.height / 2);
-
-    // pathMoon.addRRect(
-    //   RRect.fromRectAndCorners(
-    //     Rect.fromCenter(
-    //       center: Offset(
-    //         size.width * 1 / 2,
-    //         size.height * 1 / 2,
-    //       ),
-    //       width: 100,
-    //       height: 100,
-    //     ),
-    //     topRight: Radius.elliptical(100, 100),
-    //   ),
-    // );
-
-    ///primo arco prima nuvola
-    // pathMoon.addArc(
-    //   Rect.fromCenter(
-    //     center: Offset(
-    //       size.width * 1 / 2,
-    //       size.height * 1 / 2,
-    //     ),
-    //     width: size.width,
-    //     height: size.height,
-    //   ),
-    //   pi,
-    //   pi * 2,
-    // );
-
-    ///secondo arco seconda Nuvola
-    // pathMoon2.addArc(
-    //   Rect.fromCenter(
-    //     center: Offset(
-    //       size.width * 3 / 4,
-    //       size.height * 1 / 2,
-    //     ),
-    //     width: size.width * 1 / 2,
-    //     height: size.height * 1 / 2,
-    //   ),
-    //   pi * 2,
-    //   pi,
-    // );
 
     Path path1 = Path()
       ..addOval(Rect.fromCenter(

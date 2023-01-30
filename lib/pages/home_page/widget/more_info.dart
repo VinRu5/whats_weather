@@ -37,7 +37,7 @@ class MoreInfo extends StatelessWidget {
           viewData(
             title: sunData ? "Alba" : "Precipitazioni",
             value: sunData
-                ? DateFormat("H:m").format(weatherDay.sunrise)
+                ? DateFormat("H:mm").format(weatherDay.sunrise)
                 : weatherDay.precipitationAmount.toString(),
             unit: sunData ? "" : "mm",
           ),
@@ -45,7 +45,7 @@ class MoreInfo extends StatelessWidget {
           viewData(
             title: sunData ? "Tramonto" : "Velocità del vento",
             value: sunData
-                ? DateFormat("H:m").format(weatherDay.sunset)
+                ? DateFormat("H:mm").format(weatherDay.sunset)
                 : weatherDay.windSpeed.toString(),
             unit: sunData ? "" : "m/s",
           ),

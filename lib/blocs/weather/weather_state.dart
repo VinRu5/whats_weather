@@ -11,8 +11,9 @@ class LoadingWeatherState extends WeatherState {}
 
 class LoadedWeatherState extends WeatherState {
   final WeatherDay weatherDay;
+  final String cityName;
 
-  const LoadedWeatherState(this.weatherDay);
+  const LoadedWeatherState(this.weatherDay, this.cityName);
 
   @override
   List<Object> get props => [weatherDay];

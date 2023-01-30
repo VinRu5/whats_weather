@@ -1,6 +1,7 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:whats_weather/errors/network_error.dart';
 import 'package:whats_weather/errors/repository_error.dart';
+import 'package:whats_weather/models/position_city.dart';
 import 'package:whats_weather/models/weather_day.dart';
 import 'package:whats_weather/repositories/mapper/weather_mapper.dart';
 import 'package:whats_weather/services/geo_services.dart';
@@ -20,7 +21,7 @@ class WeatherRepository {
     required this.mapper,
   });
 
-  Future<WeatherDay> fetchDayData() async {
+  Future<WeatherDay> fetchDayData([PositionCity? positionCity]) async {
     final DateTime today = DateTime(
       DateTime.now().year,
       DateTime.now().month,
@@ -29,18 +30,22 @@ class WeatherRepository {
 
     Position? position;
 
-    try {
-      position = await geoService.determinePosition();
-    } catch (e) {
-      throw RepositoryError("Non è possibile geolocalizzarti");
+    if (positionCity == null) {
+      try {
+        position = await geoService.determinePosition();
+      } catch (e) {
+        throw RepositoryError("Non è possibile geolocalizzarti");
+      }
     }
 
     try {
       final AllWeatherDayDTO allWeatherDays =
           await weatherService.fetchAllWeatherDay(
         today,
-        position.latitude,
-        position.longitude,
+        (positionCity != null ? positionCity.latitude : position?.latitude) ??
+            0.0,
+        (positionCity != null ? positionCity.longitude : position?.longitude) ??
+            0.0,
       );
 
       final ReportDayDTO reportDays = await weatherService.fetchReportWeather(
@@ -50,14 +55,18 @@ class WeatherRepository {
         today.add(
           const Duration(days: 6),
         ),
-        position.latitude,
-        position.longitude,
+        (positionCity != null ? positionCity.latitude : position?.latitude) ??
+            0.0,
+        (positionCity != null ? positionCity.longitude : position?.longitude) ??
+            0.0,
       );
 
       final WeatherDayDTO weatherDayDTO = await weatherService.fetchWeatherDay(
         today,
-        position.latitude,
-        position.longitude,
+        (positionCity != null ? positionCity.latitude : position?.latitude) ??
+            0.0,
+        (positionCity != null ? positionCity.longitude : position?.longitude) ??
+            0.0,
       );
 
       return mapper.toModel(

@@ -71,4 +71,9 @@ class WeatherTheme {
     letterSpacing: 2.0,
     fontWeight: FontWeight.w600,
   );
+
+  static const TextStyle toastStyle = TextStyle(
+    fontSize: 16.0,
+    color: white,
+  );
 }

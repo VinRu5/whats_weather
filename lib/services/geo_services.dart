@@ -1,4 +1,6 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:whats_weather/errors/service_error.dart';
 
 class GeoService {
   Future<Position> determinePosition() async {
@@ -36,5 +38,24 @@ class GeoService {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
+  }
+
+  Future<List<Placemark>> getPlacemarks(
+    double latitude,
+    double longitude,
+  ) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latitude, longitude);
+
+    return placemarks;
+  }
+
+  Future<List<Location>> getLocationFromAddress(String address) async {
+    try {
+      return await locationFromAddress(address);
+    } catch (e) {
+      throw ServiceError(
+          "Locatità non trovata prova a digitare correttamente il nome dell'inidirizzo o della città");
+    }
   }
 }
