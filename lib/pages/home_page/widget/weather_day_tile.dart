@@ -37,7 +37,7 @@ class WeatherDayTile extends StatelessWidget {
       );
 
   Widget get hour => Text(
-        DateFormat("hh:mm", "it").format(
+        DateFormat("H:mm", "it").format(
           weatherHourData.date ?? DateTime.now(),
         ),
         style: WeatherTheme.dayData,

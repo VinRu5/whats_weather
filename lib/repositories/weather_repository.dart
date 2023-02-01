@@ -36,7 +36,11 @@ class WeatherRepository {
       try {
         position = await geoService.determinePosition();
       } catch (e) {
-        throw RepositoryError("Non è possibile geolocalizzarti");
+        positionCity = PositionCity(
+          latitude: 41.8892943,
+          longitude: 12.4935467,
+          cityName: "Roma",
+        );
       }
     }
 
